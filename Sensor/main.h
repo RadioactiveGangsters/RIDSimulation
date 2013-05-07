@@ -13,9 +13,9 @@
 #include <time.h>
 #include <string.h>
 
-#define maxval 1000
+#define maxvalue 1000
 
-void getSensorValue(int amount, char*const ret);
+void getSensorValue(int const amount, char*const ret, unsigned int const maxval);
 
 
 
