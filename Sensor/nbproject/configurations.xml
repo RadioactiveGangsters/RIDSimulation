@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>main.h</itemPath>
+      <itemPath>util.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -13,6 +15,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.c</itemPath>
+      <itemPath>util.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -34,6 +37,10 @@
         <compilerSet>MinGW|MinGW</compilerSet>
       </toolsSet>
       <compileType>
+        <cTool>
+          <standard>3</standard>
+          <warningLevel>2</warningLevel>
+        </cTool>
       </compileType>
     </conf>
     <conf name="Release" type="1">

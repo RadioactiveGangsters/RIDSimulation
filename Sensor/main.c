@@ -4,46 +4,69 @@
  *
  */
 
+#include "main.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
- 
-void getSensorValue(int amount);
-
+int seed;
 int main() 
 {
-    int amount = 5;    
+    srand(time(NULL));
+    seed = rand();
+    int amount = 20;    
+    char prev = 0;
     
-    getSensorValue(amount);
+    char s[amount*(numlen(maxval)+1)+1];
     
+    //Temp loop to continue the run
+    while(1)
+    {
+        getSensorValue(amount, s);
+        printf("%s\n", s);
+        
+        // if c = q or EOF then quit the application
+        char c = getchar();
+        if(c == 'q' || c==EOF )
+        {
+            return 0;
+        }
+        // if c is \n then show new random numbers
+        if(c == '\n' && prev == c)
+        {
+            // double return pressed!
+            break;
+        }
+        // reset prev
+        prev = 0; 
+    }
     return 0;
 }
 
-void getSensorValue(int amount)
+void getSensorValue(int amount, char*const ret)
 {
     int i, j;
     int count = 0;
-    char newNumber[3] = {0};
-    char sensorValues[100] = {0};
-    srand(time(NULL)); //For random generated numbers by time   
+    char newNumber[numlen(maxval)+1];
+    
+    //For random generated numbers
+    seed = rand();
+    srand(seed);
+     
     for (i = 0; i < amount; i++) 
     {
         //Get new random number between 1-100 and save in string newNumber
-        itoa ( (rand()%100 + 1), newNumber, 10 );
-        for(j = 0; j < 3; j++)
+        itoa ( (rand()%maxval + 1), newNumber, 10 );
+        for(j = 0; j < numlen(maxval); j++)
         {
             //Only if it is not empty
             if(newNumber[j] != 0)
             {
                 char c = newNumber[j]; 
-                sensorValues[count] = c;  
+                ret[count] = c;  
                 count++;
             }
         }
         //Add , to devide the numbers in the string
-        sensorValues[count] = ',';
+        ret[count] = ',';
         count++;
     }
-    printf("\nRandom Numbers: %s\n", sensorValues); 
+    ret[count-1] = NULL;
 }
