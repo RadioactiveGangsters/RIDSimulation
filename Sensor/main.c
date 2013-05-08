@@ -20,7 +20,7 @@ int main(void)
     int amount = 20;    
     char prev = 0;
     
-    char s[amount*(numlen(maxvalue)+1)+1];
+    char s[amount*(numlen(maxvalue)+1)];
     
     //Temp loop to continue the run
     while(1)
@@ -29,19 +29,19 @@ int main(void)
         
         printf("%s\n", s);
         
-        // if c = q or EOF then quit the application
+        //Ff c = q or EOF then quit the application
         char c = getchar();
         if(c == 'q' || c==EOF )
         {
             return 0;
         }
-        // if c is \n then show new random numbers
+        //If c is \n then show new random numbers
         if(c == '\n' && prev == c)
         {
-            // double return pressed!
+            //Double return pressed!
             break;
         }
-        // reset prev
+        //Reset prev
         prev = 0; 
     }
     return 0;
@@ -51,30 +51,30 @@ void getSensorValue(int const amount, char*const ret, unsigned int const maxval)
 {
     int i, j;
     int count = 0;
-    char newNumber[numlen(maxval)+1];
+    char newNumber[numlen(maxval)+2];
     
     //For random generated numbers
     seed = rand();
     srand(seed);
-     
+    
     for (i = 0; i < amount; i++) 
     {
         //Get new random number between 1-maxval and save in string newNumber
-        snprintf(newNumber, numlen(maxval), "%d",(rand()%maxval + 1));
-        for(j = 0; j < numlen(maxval); j++)
+        int randomvalue = (rand()%maxval + 1);
+        snprintf(newNumber, numlen(maxval)+2, "%d", randomvalue);
+        //printf("%d == %s\n",randomvalue, newNumber);
+        
+        j=-1;
+        while(newNumber[++j]!=0)
         {
-            //Only if it is not empty
-            if(newNumber[j] != 0)
-            {
-                //Add the number to the string
-                char c = newNumber[j]; 
-                ret[count] = c;  
-                count++;
-            }
+            //Only add if it is not empty
+            char c = newNumber[j]; 
+            ret[count] = c;  
+            count++;
         }
-        //Add , to devide the numbers in the string
         ret[count] = ',';
         count++;
     }
-    ret[count-1] = NULL;
+    //Add \0 to mark end of the string
+    ret[count-1] = '\0';
 }

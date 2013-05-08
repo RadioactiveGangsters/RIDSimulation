@@ -13,7 +13,8 @@
 #include <time.h>
 #include <string.h>
 
-#define maxvalue 1000
+/*Constrained by the value of RAND_MAX*/
+#define maxvalue 100
 
 void getSensorValue(int const amount, char*const ret, unsigned int const maxval);
 
