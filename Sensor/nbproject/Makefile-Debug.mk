@@ -36,7 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/util.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/sensor.o
 
 
 # C Compiler Flags
@@ -68,10 +68,10 @@ ${OBJECTDIR}/util.o: util.c
 	${RM} $@.d
 	$(COMPILE.c) -g -Wall -std=c99 -MMD -MP -MF $@.d -o ${OBJECTDIR}/util.o util.c
 
-${OBJECTDIR}/main.o: main.c 
+${OBJECTDIR}/sensor.o: sensor.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -g -Wall -std=c99 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -Wall -std=c99 -MMD -MP -MF $@.d -o ${OBJECTDIR}/sensor.o sensor.c
 
 # Subprojects
 .build-subprojects:
